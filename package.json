@@ -1,0 +1,39 @@
+{
+  "name": "mvvm",
+  "version": "1.0.0",
+  "description": "front-end MVVM mode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config webpack.dev.conf.js",
+    "build": "webpack --config webpack.prod.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "mvvm"
+  ],
+  "author": "ancaiu9@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "promise-polyfill": "8.1.0",
+    "whatwg-fetch": "^3.0.0"
+  }
+}
