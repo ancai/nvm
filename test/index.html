@@ -8,11 +8,111 @@
   <meta name="copyright" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
-</head>
-<style>
-</style>
+<script type="text/javascript" src="mvvm.40fb3cfce5961519ac85.js"></script></head>
+<link type="text/css" href="css/index.css">
 <body>
+  <div id="mvvm-target" class="list">
+    <h3>{{title}}</h3>
+    <form action="">
+      <div>
+        <label for="name">名称：</label><input type="text" id="name" n-model="record.name">
+        <label for="type">类型：</label><select name="type" id="type" n-model="record.type">
+          <option value="爱情/科幻">爱情/科幻</option>
+          <option value="文艺/剧情">文艺/剧情</option>
+          <option value="搞笑/剧情">搞笑/剧情</option>
+        </select>
+        <label for="year">年份：</label><select name="type" id="year" n-model="record.year">
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+        </select>
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="score">评分：</label><input type="number" id="score" n-model="record.score">
+        <label for="director">导演：</label><input type="text" id="director" n-model="record.director">
+        <button class="btn" @click="add">添加</button>
+        <span class="err-msg" n-show="errMsg">{{errMsg}}</span>
+      </div>
+    </form>
+    <ul>
+      <li>
+        <div>
+          <span>编号</span>
+          <span>名称</span>
+          <span>类型</span>
+          <span>年份</span>
+          <span>评分</span>
+          <span>导演</span>
+          <span>操作</span>
+        </div>
+      </li>
+      <li n-for="(item, index) in films" :class="{'z-odd': index & 1}">
+        <div>
+          <span>{{index + 1}}</span>
+          <span>{{item.name}}</span>
+          <span>{{item.type}}</span>
+          <span>{{item.year}}</span>
+          <span>{{item.score}}</span>
+          <span>{{item.director}}</span>
+          <span>
+            <a href="javascript:void(0);" @click="edit(item, index)">编辑</a>
+            <a href="javascript:void(0);" @click="del(index)">删除</a>
+          </span>
+        </div>
+      </li>
+      <li n-if="films.length === 0" style="text-align: center;"><span>暂无数据</span></li>
+    </ul>
+  </div>
   <script>
+    const films = [
+      {name: '美人鱼', type: '爱情/科幻', year: 2016, score: 8.9, director: '周星驰'},
+      {name: '芳华', type: '文艺/剧情', year: 2017, score: 8.6, director: '冯小刚'},
+      {name: '我不是药神', type: '搞笑/剧情', year: 2018, score: 9.2, director: '文牧野、徐峥'},
+    ]
+    var app = new MVVM({
+      el: '#mvvm-target',
+      data: {
+        title: '年度电影榜单',
+        films,
+        record: {name: '', type: '搞笑/剧情', year: 2012, score: 8.5, director: '张艺谋'},
+        errMsg: ''
+      },
+      methods: {
+        add (evt) {
+          evt.preventDefault()
+          console.log(evt)
+          console.log('add record:', this.record)
+          if (this.record.name) {
+            this.films.push(Object.assign({}, this.record))
+          } else {
+            this.errMsg = '请填写电影名称'
+          }
+        },
+        // the last hanlder function paramter is event as default behavior
+        edit (item, index, evt) {
+          console.log('item:', item, 'index:', index, 'evt:', evt)
+          this.record = item
+        },
+        del (index) {
+          console.log('index:', index)
+          this.films.splice(index, 1)
+        }
+      }
+    })
+    // console.log(vm)
   </script>
+  <section class="use-way">
+    <h2>手动实现的一个简单的前端MVVM框架</h2>
+    <div><em>1.</em><span>支持特性：数据源、过滤器、事件、多实例、局部刷新、无依赖</span></div>
+    <div><em>2.</em><span>参考Vue的原理，使用最新ES6/7 api，模板语法上 实现了vue指令的一个子集</span></div>
+    <div><em>3.</em><span>支持的指令：n-mode|n-show|n-hide|n-text|n-if|n-for|n-class等</span></div>
+    <div><em>4.</em><span>简洁、轻量、高效、小巧</span></div>
+  </section>
 </body>
 </html>
