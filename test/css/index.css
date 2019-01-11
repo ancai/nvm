@@ -1,9 +1,5 @@
 div, ul, li, h2, h3, h4, section, body, select, input {margin: 0; padding: 0;}
 body {font-size: 14px;font-family: microsoft yahei;}
-.use-way {font-size: 12px;width: 800px;font-size: 12px;margin: 20px;color: #999;padding: 5px 20px;}
-.use-way h2 {font-weight: normal; font-size: 14px;}
-.use-way em {font-family: Arial;color: green;margin-right: 20px;}
-.use-way > div { height: 30px;line-height: 30px; }
 .list {margin: 15px 30px;}
 h3 {margin-left: 200px; height: 50px;}
 form {margin: 10px 0;}
