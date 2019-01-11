@@ -63,4 +63,5 @@ class MVVM {
   
 }
 
+window.MVVM = window.mvvm = MVVM
 export default MVVM

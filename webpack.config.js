@@ -3,8 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    tie: './src/main.js',
-    tie_ie: ['babel-polyfill', 'whatwg-fetch', './src/main.js']
+    mvvm: './src/index.js',
   },
   output: {
     filename: '[name].[hash].js',
@@ -14,29 +13,17 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [path.resolve(__dirname ,'src')]
+        include: [path.resolve(__dirname ,'src'), path.resolve(__dirname ,'test')]
       }
     ]
   },
   plugins: [
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      chunks: ['tie'],
+      chunks: ['mvvm'],
       template: './index.html',
       inject: 'head',
       filename: 'index.html'
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['tie_ie'],
-      template: './ie.html',
-      inject: 'head',
-      filename: 'ie.html'
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['tie'],
-      template: './multi.html',
-      inject: 'head',
-      filename: 'multi.html'
     })
   ]
 }
