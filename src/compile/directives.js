@@ -104,12 +104,10 @@ const bind = (dir, node, vm, exp) => {
  * 事件指令绑定
  */
 const eventBind = (dir, node, vm, exp) => {
-  let name = exp, args = []
+  let name = exp, params, args = []
   if (/^(\w+)(\((.*)\))?$/.test(exp)) {
     name = RegExp.$1
-    if (RegExp.$3) {
-      args = RegExp.$3.split(/,/).map(item => item = vm.data[item.trim()])
-    }
+    params = RegExp.$3
   }
   let eventType = dir, fn = vm.listener[name]
   
@@ -117,7 +115,12 @@ const eventBind = (dir, node, vm, exp) => {
     if (!fn) {
       fn = new Function('this.' + exp)
     }
-    node.addEventListener(eventType, fn.bind(vm, ...args), false)
+    node.addEventListener(eventType, () => {
+      if (params) {
+        args = params.split(/,/).map(item => item = vm.data[item.trim()] || item)
+      }
+      (fn.bind(vm, ...args))()
+    }, false)
   }
 }
 

@@ -80,7 +80,7 @@
           <span>{{item.director}}</span>
           <span>
             <a href="javascript:void(0);" @click="edit(item, index)">编辑</a>
-            <a href="javascript:void(0);" @click="del(index)">删除</a>
+            <a href="javascript:void(0);" @click="del(index, 'aaa')">删除</a>
           </span>
         </div>
       </li>
@@ -117,8 +117,8 @@
           console.log('item:', item, 'index:', index, 'evt:', evt)
           this.record = item
         },
-        del (index) {
-          console.log('index:', index)
+        del (index, str) {
+          console.log('index:', index, 'str：', str, 'this:', this)
           this.films.splice(index, 1)
         }
       }
