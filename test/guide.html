@@ -8,17 +8,38 @@
   <meta name="copyright" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/prism.css">
   <script type="text/javascript" src="mvvm.1f4e1e32ef1e9062e6a7.js"></script>
 </head>
 <body>
-  <div id="mvvm-target" class="list">
+  <div class="wrap">
+    <h2 id="数据绑定">数据绑定</h2>
+    <p>使用 n-html(不过滤特殊字符) 或 {{}} 把数据绑定到DOM结点上</p>
+    <div class="code-block html">
+      <pre>
+        <code class=" language-markup">
+          <div id="app" class="demo">
+            <span n-html="msg"></span>
+            <span>{{99 + 99}}</span>
+          </div>
+        </code>
+      </pre>
+    </div>
+    <div id="_app" class="demo">
+      <span n-html="msg"></span>
+      <span>{{99 + 99}}</span>
+    </div>
+    <script>
+      var app = new MVVM({
+        el: '#_app',
+        data: {
+          msg: 'hello world!'
+        }
+      })
+    </script>
   </div>
-  <script>
-    var app = new MVVM({
-      el: '#mvvm-target'
-    })
-    console.log(vm)
+  <script src="assets/prism.js"></script>
   </script>
 </body>
 </html>
