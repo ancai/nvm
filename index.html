@@ -80,7 +80,7 @@
           <span>{{item.director}}</span>
           <span>
             <a href="javascript:void(0);" @click="edit(item, index)">编辑</a>
-            <a href="javascript:void(0);" @click="del(index, 'aaa')">删除</a>
+            <a href="javascript:void(0);" @click="del(index)">删除</a>
           </span>
         </div>
       </li>
@@ -99,12 +99,13 @@
         title: '年度电影榜单',
         films,
         record: {name: '', type: '搞笑/剧情', year: 2012, score: 8.5, director: '张艺谋'},
-        errMsg: ''
+        errMsg: '',
+        editRow: {}
       },
       methods: {
         add (evt) {
-          evt.preventDefault()
           console.log(evt)
+          evt.preventDefault()
           console.log('add record:', this.record)
           if (this.record.name) {
             this.films.push(Object.assign({}, this.record))
@@ -115,10 +116,10 @@
         // the last hanlder function paramter is event as default behavior
         edit (item, index, evt) {
           console.log('item:', item, 'index:', index, 'evt:', evt)
-          this.record = item
+          this.record = Object.assign({}, item)
         },
         del (index, str) {
-          console.log('index:', index, 'str：', str, 'this:', this)
+          console.log('index:', index)
           this.films.splice(index, 1)
         }
       }
