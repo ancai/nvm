@@ -15,3 +15,6 @@ ul li:first-child{border-top: solid 1px #dedede;font-weight: bold; }
 ul li {list-style: none;height: 48px;line-height: 4em;border: solid 1px #dedede;border-top: none;}
 li.z-odd {background-color: #f8f8f9;}
 ul li span {display: inline-block; width: 100px;text-align: center;}
+.edit-area {position: fixed;right: 80px; top: 50%; transform: translateY(-60%);width: 280px; height: 260px;
+  border: dotted 1px greenyellow;padding: 5px;box-shadow: #ddd 0 0 10px;}
+.edit-area form > div {margin: 10px 15px;}

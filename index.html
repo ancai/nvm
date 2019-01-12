@@ -27,6 +27,9 @@
   ul li {list-style: none;height: 48px;line-height: 4em;border: solid 1px #dedede;border-top: none;}
   li.z-odd {background-color: #f8f8f9;}
   ul li span {display: inline-block; width: 100px;text-align: center;}
+  .edit-area {position: fixed;right: 80px; top: 50%; transform: translateY(-60%);width: 280px; height: 260px;
+    border: dotted 1px greenyellow;padding: 5px;box-shadow: #ddd 0 0 10px;}
+  .edit-area form > div {margin: 10px 15px;}
 </style>
 <body>
   <div id="mvvm-target" class="list">
@@ -86,6 +89,47 @@
       </li>
       <li n-if="films.length === 0" style="text-align: center;"><span>暂无数据</span></li>
     </ul>
+    <div class="edit-area" n-if="editIdx > -1">
+      <form>
+        <div>
+          <label for="name">名称：</label>
+          <input type="text" id="name" n-model="editRow.name">
+        </div>
+        <div>
+          <label for="type">类型：</label>
+          <select name="type" id="type" n-model="editRow.type">
+            <option value="爱情/科幻">爱情/科幻</option>
+            <option value="文艺/剧情">文艺/剧情</option>
+            <option value="搞笑/剧情">搞笑/剧情</option>
+          </select>
+        </div>
+        <div>
+          <label for="year">年份：</label>
+          <select name="type" id="year" n-model="editRow.year">
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+          </select>
+        </div>
+        <div>
+          <label for="score">评分：</label>
+          <input type="number" id="score" n-model="editRow.score">
+        </div>
+        <div>
+          <label for="director">导演：</label>
+          <input type="text" id="director" n-model="editRow.director">
+        </div>
+        <div>
+          <button class="btn" @click="save">保存</button>
+        </div>
+      </form>
+    </div>
   </div>
   <script>
     const films = [
@@ -100,7 +144,8 @@
         films,
         record: {name: '', type: '搞笑/剧情', year: 2012, score: 8.5, director: '张艺谋'},
         errMsg: '',
-        editRow: {}
+        editRow: null,
+        editIdx: -1
       },
       methods: {
         add (evt) {
@@ -116,11 +161,17 @@
         // the last hanlder function paramter is event as default behavior
         edit (item, index, evt) {
           console.log('item:', item, 'index:', index, 'evt:', evt)
-          this.record = Object.assign({}, item)
+          this.editRow = Object.assign({}, item)
+          this.editIdx = index
         },
         del (index, str) {
           console.log('index:', index)
           this.films.splice(index, 1)
+        },
+        save (evt) {
+          evt.preventDefault()
+          this.films.splice(this.editIdx, 1, Object.assign({}, this.editRow))
+          this.editIdx = -1
         }
       }
     })
