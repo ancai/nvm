@@ -127,6 +127,7 @@
         </div>
         <div>
           <button class="btn" @click="save">保存</button>
+          <a href="javascript:void(0);" @click="cancel" style="color: #999;margin-left: 50px;">取消</a>
         </div>
       </form>
     </div>
@@ -171,6 +172,9 @@
         save (evt) {
           evt.preventDefault()
           this.films.splice(this.editIdx, 1, Object.assign({}, this.editRow))
+          this.editIdx = -1
+        },
+        cancel (evt) {
           this.editIdx = -1
         }
       }
