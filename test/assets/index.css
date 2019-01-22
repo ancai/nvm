@@ -21,7 +21,6 @@ ul li span {display: inline-block; width: 100px;text-align: center;}
 .wrap {max-width: 750px; margin: 0 auto;}
 .wrap h2 {margin: 45px 0 0.8em;padding-bottom: 0.7em;border-bottom: 1px solid #ddd;}
 .code {overflow-x: auto;background-color: #f8f8f8;padding: 0.4em 0 0;line-height: 1.1em;border-radius: 2px;position: relative;}
-.code::before {position: absolute;top: 0;right: 0;color: #ccc;text-align: right;font-size: 0.75em;padding: 5px 10px 0;line-height: 15px;height: 15px;font-weight: 600;}
-.code.html::before {content: "HTML"}
 .demo {border: 1px solid #eee;border-radius: 2px;padding: 25px 35px;margin-top: 1em;margin-bottom: 40px;font-size: 1.2em;line-height: 1.5em;user-select: none;overflow-x: auto;}
 .demo span {margin-right: 20px;}
+.remark {font-size: 12px; color: #999; font-style: italic;}

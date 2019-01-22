@@ -13,33 +13,73 @@
   <script type="text/javascript" src="mvvm.1f4e1e32ef1e9062e6a7.js"></script>
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap" id="wrap">
     <h2 id="数据绑定">数据绑定</h2>
     <p>使用 n-html(不过滤特殊字符) 或 {{}} 把数据绑定到DOM结点上</p>
-    <div class="code-block html">
-      <pre>
-        <code class=" language-markup">
-          <div id="app" class="demo">
-            <span n-html="msg"></span>
-            <span>{{99 + 99}}</span>
-          </div>
-        </code>
-      </pre>
+    <p class="remark">双花括号会将数据解释为普通文本，而非 HTML 代码；为了输出真正的 HTML，需要使用 n-html 指令</p>
+    <div class="code-block"><pre><code class="language-markup"></code></pre>
     </div>
-    <div id="_app" class="demo">
-      <span n-html="msg"></span>
-      <span>{{99 + 99}}</span>
+    <div class="demo">
+      <div id="app">
+        <span n-html="msg"></span>
+        <span>{{99 + 99}}</span>
+      </div>
+      <script>
+        const app = new MVVM({
+          el: '#app',
+          data: {
+            msg: 'hello world!'
+          }
+        })
+      </script>
     </div>
-    <script>
-      var app = new MVVM({
-        el: '#_app',
-        data: {
-          msg: 'hello world!'
-        }
-      })
-    </script>
+    <h2 id="过滤器">过滤器</h2>
+    <p>strLen为内置过滤器：展示前N个字符，true表示追加“...”省略号</p>
+    <p>通过配置filters选项，添加自定义过滤器</p>
+    <div class="code-block">
+      <pre><code class="language-html"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="app-2">
+        <span>{{msg | strLen(10, true)}}</span>
+        <span>{{dt | dateFormat}}</span>
+      </div>
+      <script>
+        const app2 = new MVVM({
+          el: '#app-2',
+          data: {
+            msg: 'study frontend development skills!',
+            dt: Date.now()
+          },
+          filters: {
+            dateFormat: value => {
+              const dt = new Date(value)
+              return dt.getFullYear() + '-' + dt.getMonth() + 1 + '-' + dt.getDate()
+            }
+          },
+        })
+      </script>
+    </div>
+    <h2 id="条件和循环">条件和循环</h2>
+    <p>n-if n-for 分别控制条件 和 循环</p>
+    <div class="code-block">
+      <pre><code class="language-html"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="app-3">
+        <span n-for="(item, index) in list" n-if="index < 3">{{item}}</span>
+      </div>
+      <script>
+        const app3 = new MVVM({
+          el: '#app-3',
+          data: {
+            list: ['js', 'css', 'html', '不展示']
+          }
+        })
+      </script>
+    </div>
   </div>
   <script src="assets/prism.js"></script>
-  </script>
+  <script src="assets/index.js"></script>
 </body>
 </html>
