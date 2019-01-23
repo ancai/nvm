@@ -16,6 +16,7 @@ const accessPath = exp => {
 
 /**
  * 获得表达式的值
+ * 数据代理 实现 obj.xxx -> vm.data.xxx
  * @param {*} exp 指令表达式
  */
 const getVal = (exp) => {
@@ -39,18 +40,18 @@ const getVal = (exp) => {
     exp.split(regArithmetic).forEach(item => {
       const mark = item.trim()
       if (regVariable.test(mark)) {
-        code += 'obj.data.'
+        code += 'obj.'
       }
       code += mark
     })
     code += ';'
   } else { // 常规取值
-    code += `val = obj.data.${exp};`
+    code += `val = obj.${exp};`
     let {ancestor, end} = accessPath(vexp || exp)
     if (ancestor) {
       ancestor = '.' + ancestor
     }
-    code += `if (obj.data.${vexp || exp} === undefined) { obj.observe(obj.data${ancestor}, '${end}') };`
+    code += `if (obj.${vexp || exp} === undefined) { obj.observe(obj${ancestor}, '${end}') };`
   }
   code += 'return val; }'
 
@@ -62,7 +63,7 @@ const getVal = (exp) => {
  * @param {*} exp 指令表达式
  */
 export const setVal = (exp) => {
-  return (new Function('obj', 'val', `obj.data.${exp} = val`))
+  return (new Function('obj', 'val', `obj.${exp} = val`))
 }
 
 export default getVal
