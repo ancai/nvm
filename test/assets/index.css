@@ -31,5 +31,5 @@ pre[class*="language-javascript"]::after {content: 'JS'}
 nav {position: fixed;top: 50px; left: 50px;width: 200px;z-index: 2;border: solid 1px #ccc;overflow: hidden;}
 nav ul {width: 100%; overflow: hidden;}
 nav > ul > li:first-child {font-weight: normal;border-top:none;}
-nav li {height: 45px;text-align: center;border: none;border-top: solid 1px #ccc; }
+nav li {height: 45px;text-align: center;border: none;border-top: dashed 1px #ccc; }
 nav li a {text-decoration: none; font-size: 14px;color: #222;line-height: 45px;}
