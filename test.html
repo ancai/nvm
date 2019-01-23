@@ -7,13 +7,17 @@
   <title>test</title>
 </head>
 <body>
-  <h2>遍历数组</h2>
-  <div id="target"><span n-for="(item, index) in arry">{{index}}--->{{item}}，</span></div>
+  <div id="target">{{reversedMsg}}</div>
   <script>
-    var app = new MVVM({
+    const app5 = new MVVM({
       el: '#target',
       data: {
-        arry: [...'ABCDEFG']
+        message: 'Hello MVVM!'
+      },
+      computed: {
+        reversedMsg () {
+          return this.message.split('').reverse().join('')
+        }
       }
     })
   </script>

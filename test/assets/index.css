@@ -24,3 +24,12 @@ ul li span {display: inline-block; width: 100px;text-align: center;}
 .demo {border: 1px solid #eee;border-radius: 2px;padding: 25px 35px;margin-top: 1em;margin-bottom: 40px;font-size: 1.2em;line-height: 1.5em;user-select: none;overflow-x: auto;}
 .demo span {margin-right: 20px;}
 .remark {font-size: 12px; color: #999; font-style: italic;}
+pre[class*="language-"] {padding: 0;position: relative;}
+pre[class*="language-"]::after {position: absolute;display: block;content: 'HTML'; top: 0;right: 0;padding: 5px 10px 0;
+line-height: 15px;height: 15px;font-weight: 600;color: #ccc;}
+pre[class*="language-javascript"]::after {content: 'JS'}
+nav {position: fixed;top: 50px; left: 50px;width: 200px;z-index: 2;border: solid 1px #ccc;overflow: hidden;}
+nav ul {width: 100%; overflow: hidden;}
+nav > ul > li:first-child {font-weight: normal;border-top:none;}
+nav li {height: 45px;text-align: center;border: none;border-top: solid 1px #ccc; }
+nav li a {text-decoration: none; font-size: 14px;color: #222;line-height: 45px;}

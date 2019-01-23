@@ -16,7 +16,7 @@ const accessPath = exp => {
 
 /**
  * 获得表达式的值
- * 数据代理 实现 obj.xxx -> vm.data.xxx
+ * 由于数据代理 obj.xxx -> vm.data.xxx
  * @param {*} exp 指令表达式
  */
 const getVal = (exp) => {
