@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+</head>
+<body>
+  <h2>遍历数组</h2>
+  <div id="target"><span n-for="(item, index) in arry">{{index}}--->{{item}}，</span></div>
+  <script>
+    var app = new MVVM({
+      el: '#target',
+      data: {
+        arry: [...'ABCDEFG']
+      }
+    })
+  </script>
+</body>
+</html>

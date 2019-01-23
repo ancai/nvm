@@ -9,7 +9,7 @@ class FOR {
     this.ref = document.createComment('n-for')
     this.template = node.cloneNode(true)
     this.vm = vm
-    this.forVM = new WeakMap()
+    this.forVM = new Map()
     this.data = []
     util.replaceWith(this.ref, node)
   }

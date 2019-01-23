@@ -10,6 +10,23 @@
   <meta name="format-detection" content="telephone=no, email=no, address=no">
   <link rel="stylesheet" href="assets/index.css">
   <link rel="stylesheet" href="assets/prism.css">
+  <script src="assets/prism.js"></script>
+  <script>
+    document.onreadystatechange = () => {
+  if (document.readyState === 'interactive') init()
+}
+const map = {'<': '&lt;', '>': '&gt;', '"': '&quot;', '&': '&amp;'}
+const init = () => {
+  const wrap = document.getElementById('wrap')
+  const demoList = window.dlist = wrap.querySelectorAll('.demo')
+  demoList.forEach(demoNode => {
+    const html = demoNode.innerHTML.replace(/[><"&]/g, match => map[match])
+    console.log('html:', html)
+    demoNode.previousElementSibling.children[0].firstElementChild.innerHTML = html
+  })
+  window.Prism.highlightAll() // code highlight
+}
+  </script>
   <script type="text/javascript" src="mvvm.1f4e1e32ef1e9062e6a7.js"></script>
 </head>
 <body>
@@ -79,7 +96,5 @@
       </script>
     </div>
   </div>
-  <script src="assets/prism.js"></script>
-  <script src="assets/index.js"></script>
 </body>
 </html>
