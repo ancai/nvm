@@ -15,9 +15,16 @@ const init = () => {
   document.body.appendChild(scriptEle)
 }
 
+let isInit = false
 document.addEventListener('readystatechange', () => {
   console.log('document.readyState:', document.readyState)
   if (document.readyState === 'interactive') {
+    isInit = true
     init()
   }
 })
+setTimeout(() => {
+  if (!isInit) {
+    init()
+  }
+}, 1500)
