@@ -27,4 +27,4 @@ setTimeout(() => {
   if (!isInit) {
     init()
   }
-}, 1500)
+}, 3000)
