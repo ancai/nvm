@@ -1,4 +1,5 @@
 console.time('start')
+console.log('start:', Date.now())
 document.addEventListener('readystatechange', () => {
   if (document.readyState === 'interactive') init()
 })
