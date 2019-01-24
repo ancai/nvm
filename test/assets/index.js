@@ -24,6 +24,7 @@ document.addEventListener('readystatechange', () => {
   }
 })
 setTimeout(() => {
+  console.log('isInit:', isInit)
   if (!isInit) {
     init()
   }
