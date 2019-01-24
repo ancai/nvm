@@ -19,6 +19,6 @@ npm install
 npm run dev
 ```
 ## 示例
-[数据表格](http://htmlpreview.github.io/?https://github.com/ancai/mvvm/blob/master/test/index.html)
+[数据表格](https://ancai.github.io/mvvm/index.html)
 
-[用法说明](http://htmlpreview.github.io/?https://github.com/ancai/mvvm/blob/master/test/guide.html#数据绑定)
+[用法说明](https://ancai.github.io/mvvm/guide.html)
