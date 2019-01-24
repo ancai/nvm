@@ -1,11 +1,5 @@
-console.time('start')
-console.log('start:', Date.now())
-document.addEventListener('readystatechange', () => {
-  if (document.readyState === 'interactive') init()
-})
 const map = {'<': '&lt;', '>': '&gt;', '"': '&quot;', '&': '&amp;'}
 const init = () => {
-  console.timeEnd('start')
   const wrap = document.getElementById('wrap')
   const demoList = window.dlist = wrap.querySelectorAll('.demo')
   demoList.forEach(demoNode => {
@@ -20,3 +14,4 @@ const init = () => {
   scriptEle.setAttribute('src', 'assets/prism.js')
   document.body.appendChild(scriptEle)
 }
+init()
