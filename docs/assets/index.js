@@ -11,15 +11,16 @@ const initPrism = () => {
 const map = {'<': '&lt;', '>': '&gt;', '"': '&quot;', '&': '&amp;'}
 const init = () => {
   const wrap = document.getElementById('wrap')
-  const demoList = window.dlist = wrap.querySelectorAll('.demo')
-  demoList.forEach(demoNode => {
+  const demoList = wrap.querySelectorAll('.demo')
+  for (let i = 0; i < demoList.length; i++) {
+    const demoNode = demoList[i]
     demoNode.previousElementSibling.children[1].firstElementChild.innerHTML = demoNode.children[1].innerHTML.replace(/'#_/g, '\'#')
-  })
+  }
   const markupList = wrap.querySelectorAll('code.language-markup')
-  for (const markupNode of markupList) {
+  for (let i = 0; i < markupList.length; i++) {
+    const markupNode = markupList[i]
     markupNode.innerHTML = markupNode.innerHTML.replace(/[><"&]/g, match => map[match])
   }
-
   initPrism()
 }
 
