@@ -20,6 +20,7 @@
       <li><a href="#用户输入">用户输入</a></li>
       <li><a href="#计算属性">计算属性</a></li>
       <li><a href="#绑定事件">绑定事件</a></li>
+      <li><a href="#监视数据">监视数据</a></li>
     </ul>
   </nav>
   <div class="wrap" id="wrap">
@@ -208,6 +209,39 @@
             }
           }
         })
+      </script>
+    </div>
+    <h2 id="监视数据">监视数据</h2>
+    <p>调用实例上的watch方法，监视数据变化，在回调函数中通知</p>
+    <div class="code-block">
+      <pre><code class="language-markup">
+        <div id="app-7">
+          <button @click="greet">change</button>
+          <span>{{num}}</span>
+          <span>{{num2}}</span>
+        </div>
+      </code></pre>
+      <pre><code class="language-javascript"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="_app-7">
+        <button @click="change">改变</button>
+        <span>{{num}}</span>
+      </div>
+      <script>
+        const app7 = new MVVM({
+          el: '#_app-7',
+          data: {
+            num: 998,
+            num2: 999
+          },
+          methods: {
+            change () {
+              this.num = parseInt(Math.random() * 1000)
+            }
+          }
+        })
+        app7.watch('num', (val ,old) => console.log('val:', val, 'old:', old))
       </script>
     </div>
   </div>

@@ -21,4 +21,4 @@ npm run dev
 ## 示例
 [数据表格](http://htmlpreview.github.io/?https://github.com/ancai/mvvm/blob/master/test/index.html)
 
-[用法说明](http://htmlpreview.github.io/?https://github.com/ancai/mvvm/blob/master/test/guide.html)
+[用法说明](http://htmlpreview.github.io/?https://github.com/ancai/mvvm/blob/master/test/guide.html#数据绑定)
