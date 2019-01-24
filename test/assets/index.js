@@ -1,8 +1,10 @@
+console.time('start')
 document.addEventListener('readystatechange', () => {
   if (document.readyState === 'interactive') init()
 })
 const map = {'<': '&lt;', '>': '&gt;', '"': '&quot;', '&': '&amp;'}
 const init = () => {
+  console.timeEnd('start')
   const wrap = document.getElementById('wrap')
   const demoList = window.dlist = wrap.querySelectorAll('.demo')
   demoList.forEach(demoNode => {
@@ -12,5 +14,8 @@ const init = () => {
   for (const markupNode of markupList) {
     markupNode.innerHTML = markupNode.innerHTML.replace(/[><"&]/g, match => map[match])
   }
-  window.Prism.highlightAll() // code highlight
+
+  const scriptEle = document.createElement('script')
+  scriptEle.setAttribute('src', 'assets/prism.js')
+  document.body.appendChild(scriptEle)
 }
