@@ -14,4 +14,10 @@ const init = () => {
   scriptEle.setAttribute('src', 'assets/prism.js')
   document.body.appendChild(scriptEle)
 }
-init()
+
+document.addEventListener('readystatechange', () => {
+  console.log('document.readyState:', document.readyState)
+  if (document.readyState === 'interactive') {
+    init()
+  }
+})
