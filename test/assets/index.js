@@ -12,19 +12,18 @@ const init = () => {
 
   const scriptEle = document.createElement('script')
   scriptEle.setAttribute('src', 'assets/prism.js')
+  scriptEle.setAttribute('type', 'text/javascript')
   document.body.appendChild(scriptEle)
 }
 
 let isInit = false
 document.addEventListener('readystatechange', () => {
-  console.log('document.readyState:', document.readyState)
   if (document.readyState === 'interactive') {
     isInit = true
     init()
   }
 })
 setTimeout(() => {
-  console.log('isInit:', isInit)
   if (!isInit) {
     init()
   }
