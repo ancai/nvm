@@ -21,6 +21,7 @@
       <li><a href="#计算属性">计算属性</a></li>
       <li><a href="#绑定事件">绑定事件</a></li>
       <li><a href="#监视数据">监视数据</a></li>
+      <li><a href="#钩子函数">钩子函数</a></li>
     </ul>
   </nav>
   <div class="wrap" id="wrap">
@@ -242,6 +243,26 @@
           }
         })
         app7.watch('num', (val ,old) => console.log('val:', val, 'old:', old))
+      </script>
+    </div>
+    <h2 id="钩子函数">钩子函数</h2>
+    <p>实例生成后，会调用钩子函数---created，可以在里面执行模块的初始化业务逻辑</p>
+    <div class="code-block">
+      <pre><code class="language-markup">
+        <div id="app-8"></div>
+      </code></pre>
+      <pre><code class="language-javascript"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="_app-8">
+      </div>
+      <script>
+        const app8 = new MVVM({
+          el: '#_app-8',
+          created() {
+            console.log('app8 instance is created:', this)
+          }
+        })
       </script>
     </div>
   </div>
