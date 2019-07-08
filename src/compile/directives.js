@@ -72,7 +72,6 @@ const dirs = {
 
 // 链接到指令解析器
 const link = (node, vm, exp, dir) => {
-  console.log(exp, dir)
   const parserFn = parser(dir)
   const value = getter(vm, exp)
   if (node.nodeType === Element.ELEMENT_NODE) {
