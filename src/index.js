@@ -3,7 +3,7 @@ import observe from './observer'
 import Compile from './compile/scan.js'
 import {proxy} from './lang'
 import filters from './filters'
-class MVVM {
+class NVM {
   constructor (options = {}) {
     // 配置选项
     this.options = options
@@ -63,5 +63,5 @@ class MVVM {
   
 }
 
-window.MVVM = window.mvvm = MVVM
-export default MVVM
+window.NVM = window.nvm = NVM
+export default NVM

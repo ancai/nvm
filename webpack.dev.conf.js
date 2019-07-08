@@ -12,5 +12,6 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     hot: true,
     disableHostCheck: true,
+    port: 8080
   }
 })

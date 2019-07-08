@@ -2,13 +2,13 @@
 <html lang="zh_CN">
 <head>
   <meta charset="utf-8">
-  <title>nvm-demo</title>
+  <title>mvvm-demo</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="author" content="">
   <meta name="copyright" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
-</head>
+<script type="text/javascript" src="nvm.5c338d80ad3691a073f1.js"></script></head>
 <style>
   div, ul, li, h2, h3, h4, section, body, select, input {margin: 0; padding: 0;}
   body {font-size: 14px;font-family: microsoft yahei;}
@@ -32,7 +32,7 @@
   .edit-area form > div {margin: 10px 15px;}
 </style>
 <body>
-  <div id="nvm-target" class="list">
+  <div id="mvvm-target" class="list">
     <h3>{{title}}</h3>
     <form action="">
       <div>
@@ -138,8 +138,8 @@
       {name: '芳华', type: '文艺/剧情', year: 2017, score: 8.6, director: '冯小刚'},
       {name: '我不是药神', type: '搞笑/剧情', year: 2018, score: 9.2, director: '文牧野、徐峥'},
     ]
-    var app = new NVM({
-      el: '#nvm-target',
+    var app = new MVVM({
+      el: '#mvvm-target',
       data: {
         title: '年度电影榜单',
         films,

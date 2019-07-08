@@ -1,26 +1,19 @@
-const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    mvvm: './src/index.js',
+    nvm: './src/index.js',
   },
   output: {
     filename: '[name].[hash].js',
   },
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [path.resolve(__dirname ,'src'), path.resolve(__dirname ,'test')]
-      }
-    ]
+    rules: []
   },
   plugins: [
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      chunks: ['mvvm'],
+      chunks: ['nvm'],
       template: './index.html',
       inject: 'head',
       filename: 'index.html'

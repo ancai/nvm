@@ -1,7 +1,7 @@
 /**
  * if 条件 解析器
  */
-import MVVM from '../index'
+import NVM from '../index'
 import util from './util'
 
 class IF {
@@ -43,12 +43,12 @@ class IF {
 
   /**
    * 对于 n-if结点不能当成普通的结点来处理，更像是一个子实例
-   * 所以我们将整个 n-if 结点当成是另外一个 MVVM实例
+   * 所以我们将整个 n-if 结点当成是另外一个 NVM实例
    */
   build (template) {
     const data = {}
     data.__proto__ = this.vm.data
-    const childVM = new MVVM({
+    const childVM = new NVM({
       template,
       parent: this.vm,
       data
