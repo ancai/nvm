@@ -9,7 +9,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
   <link rel="stylesheet" href="assets/index.css">
-  <script type="text/javascript" src="nvm.d5dfc5cade149a0e76f0.js"></script>
+  <script type="text/javascript" src="nvm.a6c9b5066471abab1302.js"></script>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color:gray;
+    }
+    .green-bg {
+      background-color: green;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -22,6 +32,8 @@
       <li><a href="#绑定事件">绑定事件</a></li>
       <li><a href="#监视数据">监视数据</a></li>
       <li><a href="#钩子函数">钩子函数</a></li>
+      <li><a href="#改变样式类">改变样式类</a></li>
+      <li><a href="#设置DOM属性">设置DOM属性</a></li>
     </ul>
   </nav>
   <div class="wrap" id="wrap">
@@ -262,6 +274,72 @@
           created() {
             console.log('app8 instance is created:', this)
           }
+        })
+      </script>
+    </div>
+    <h2 id="改变样式类">改变样式类</h2>
+    <p>切换样式类，在日常的开发中可能使用比较多的，通过 :class={...}形式绑定到数据上</p>
+    <div class="code-block">
+      <pre><code class="language-markup">
+        <div id="app-9">
+          <div class="box" :class="{'green-bg': green}">
+            <button @click="toggle">change</button>
+          </div>
+        </div>
+      </code></pre>
+      <pre><code class="language-javascript"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="_app-9">
+        <div class="box" :class="{'green-bg': green}">
+          <button @click="toggle">change</button>
+        </div>
+      </div>
+      <script>
+        const app9 = new NVM({
+          el: '#_app-9',
+          data: {
+            green: false
+          },
+          methods: {
+            toggle() {
+              this.green = !this.green
+            }
+          }
+        })
+      </script>
+    </div>
+    <h2 id="设置DOM属性">设置DOM属性</h2>
+    <p>给一张图片，分别设置src、title和alt属性</p>
+    <div class="code-block">
+      <pre><code class="language-markup">
+        <div id="app-10">
+          <img :src="src" :alt="alt" :title="title">
+          <span>(点击头像改变src)</span>
+        </div>
+      </code></pre>
+      <pre><code class="language-javascript"></code></pre>
+    </div>
+    <div class="demo">
+      <div id="_app-10">
+        <img :src="src" :alt="alt" :title="title" @click="toggle">
+        <span style="font-size: 12px;color:#999;">(点击头像改变src)</span>
+      </div>
+      <script>
+        let index = 1
+        const app10 = new NVM({
+            el: '#_app-10',
+            data: {
+                src: './assets/user_1.png',
+                alt: 'this is a picture',
+                title: 'portrait'
+            },
+            methods: {
+              toggle() {
+                index = ++index % 2
+                this.src = `./assets/user_${index}.png`
+              }
+            }
         })
       </script>
     </div>
