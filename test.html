@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nvm framework test</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+        }
+        .green-bg {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="m-demo" id="nvm-1">
+            <h3>设置样式类</h3>
+            <div class="box" :class="{'green-bg': green}">
+                <button @click="toggle">change</button>
+            </div>
+        </div>
+        <script>
+            const app = new NVM({
+                el: '#nvm-1',
+                data: {
+                    green: false
+                },
+                methods: {
+                    toggle() {
+                        this.green = !this.green
+                    }
+                }
+            })
+        </script>
+        <div class="m-demo" id="nvm-2">
+            <h3>设置DOM属性</h3>
+            <div>
+                <img :src="src" :alt="alt" :title="title" data-src="./logo.png">
+            </div>
+        </div>
+        <script>
+            const app2 = new NVM({
+                el: '#nvm-2',
+                data: {
+                    src: './logo.png',
+                    alt: 'this is a picture',
+                    title: 'logo'
+                }
+            })
+        </script>
+    </div>
+</body>
+</html>

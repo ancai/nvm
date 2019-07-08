@@ -72,6 +72,7 @@ const dirs = {
 
 // 链接到指令解析器
 const link = (node, vm, exp, dir) => {
+  console.log(exp, dir)
   const parserFn = parser(dir)
   const value = getter(vm, exp)
   if (node.nodeType === Element.ELEMENT_NODE) {
@@ -79,7 +80,7 @@ const link = (node, vm, exp, dir) => {
   }
 
   parserFn(node, value, {exp, dir})
-  new Watcher(vm, exp, (newVal, oldVal) => parserFn(node, newVal, {exp, oldVal}))
+  new Watcher(vm, exp, (newVal, oldVal) => parserFn(node, newVal, {exp, oldVal, dir}))
 }
 
 const getter = (vm, exp) => (getVal(exp))(vm)

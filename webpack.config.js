@@ -17,6 +17,12 @@ module.exports = {
       template: './index.html',
       inject: 'head',
       filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['nvm'],
+      template: './test.html',
+      inject: 'head',
+      filename: 'test.html'
     })
   ]
 }
