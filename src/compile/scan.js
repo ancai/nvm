@@ -95,6 +95,7 @@ class Compile {
       }
     })
   }
+
   compileText (node) {
     directives.text(node, this.vm)
   }
