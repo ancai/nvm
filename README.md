@@ -1,4 +1,4 @@
-# mvvm
+# nvm
 a small demo of front-end framework of MVVM mode
 
 ## 简介
