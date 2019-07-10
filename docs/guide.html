@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
   <link rel="stylesheet" href="assets/index.css">
-  <script type="text/javascript" src="nvm.6d334ec4c12763d90ba9.js"></script>
+  <script type="text/javascript" src="nvm.e8f55d582b084dee7234.js"></script>
   <style>
     .box {
       width: 100px;
@@ -314,32 +314,61 @@
     <div class="code-block">
       <pre><code class="language-markup">
         <div id="app-10">
-          <img :src="src" :alt="alt" :title="title">
-          <span>(点击头像改变src)</span>
+            <canvas :width="width" :height="height"
+              :style="background-color: {{bgColor}};border: solid {{borderWidth}}px black;">
+            </canvas>
+            <div>
+              <span>大小：</span>
+              <button @click="changeSize(100)">100</button>
+              <button @click="changeSize(200)">200</button>
+              <button @click="changeSize(300)">300</button>
+            </div>
+            <div>
+              <span>颜色：</span>
+              <button @click="changeColor(red)">红</button>
+              <button @click="changeColor(#ffd100)">黄</button>
+              <button @click="changeColor(green)">绿</button>
+            </div>
         </div>
       </code></pre>
       <pre><code class="language-javascript"></code></pre>
     </div>
     <div class="demo">
       <div id="_app-10">
-        <img :src="src" :alt="alt" :title="title" @click="toggle">
-        <span style="font-size: 12px;color:#999;">(点击头像改变src)</span>
+          <canvas :width="width" :height="height"
+            :style="background-color: {{bgColor}};border: solid {{borderWidth}}px black;">
+          </canvas>
+          <div>
+            <span>大小：</span>
+            <button @click="changeSize(100)">100</button>
+            <button @click="changeSize(200)">200</button>
+            <button @click="changeSize(300)">300</button>
+          </div>
+          <div>
+            <span>颜色：</span>
+            <button @click="changeColor(red)">红</button>
+            <button @click="changeColor(#ffd100)">黄</button>
+            <button @click="changeColor(green)">绿</button>
+          </div>
       </div>
       <script>
-        let index = 1
         const app10 = new NVM({
-            el: '#_app-10',
-            data: {
-                src: './assets/user_1.png',
-                alt: 'this is a picture',
-                title: 'portrait'
+          el: '#_app-10',
+          data: {
+            width: 200,
+            height: 200,
+            bgColor: 'green',
+            borderWidth: 3,
+          },
+          methods: {
+            changeSize(size) {
+              this.width = this.height = size
+              this.borderWidth = size / 100
             },
-            methods: {
-              toggle() {
-                index = ++index % 2
-                this.src = `./assets/user_${index}.png`
-              }
+            changeColor(color) {
+              this.bgColor = color
             }
+          }
         })
       </script>
     </div>

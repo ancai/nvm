@@ -72,14 +72,29 @@ const dirs = {
 
 // 链接到指令解析器
 const link = (node, vm, exp, dir) => {
-  const parserFn = parser(dir)
-  const value = getter(vm, exp)
+  const parserFn = parser(dir), compositeReg = /{{(\w+?)}}/g
   if (node.nodeType === Element.ELEMENT_NODE) {
     node._originalDisplay = node.style.display
   }
 
-  parserFn(node, value, {exp, dir})
-  new Watcher(vm, exp, (newVal, oldVal) => parserFn(node, newVal, {exp, oldVal, dir}))
+  if (compositeReg.test(exp)) {
+    const data = {}
+    const compositeValue = exp.replace(compositeReg, (match, p1) => data[p1] = getter(vm, p1))
+    parserFn(node, compositeValue, {exp, dir})
+    let result
+    while ((result = compositeReg.exec(exp)) != null) {
+      const [match, key] = result
+      new Watcher(vm, key, (newVal, oldVal) => {
+        data[key] = newVal
+        const compositeValue = exp.replace(compositeReg, (match, p1) => data[p1])
+        parserFn(node, compositeValue, {exp:key, oldVal, dir})
+      })
+    }
+  } else {
+    const value = getter(vm, exp)
+    parserFn(node, value, {exp, dir})
+    new Watcher(vm, exp, (newVal, oldVal) => parserFn(node, newVal, {exp, oldVal, dir}))
+  }
 }
 
 const getter = (vm, exp) => (getVal(exp))(vm)
