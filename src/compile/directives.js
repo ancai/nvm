@@ -42,13 +42,49 @@ const dirs = {
   // n-model 的简单实现，表单项变化 关联到数据
   model (node, vm, exp) {
     link(node, vm, exp, 'model')
-    let val = getter(vm, exp)
-    node.addEventListener('input', e => {
-      const newVal = e.target.value
-      if (val === newVal) return
-      setter(vm, exp, newVal)
-      val = newVal
-    })
+    const fn = evt => {
+      const oldVal = getter(vm, exp),
+        newVal = evt.target.value
+      if (oldVal !== newVal) {
+        setter(vm, exp, newVal)
+      }
+    }
+    if (node.tagName === 'INPUT' && node.type === 'text' || node.tagName === 'TEXTAREA') {
+      node.addEventListener('input', fn)
+    }
+    if (node.tagName === 'INPUT' && node.type === 'radio') {
+      node.addEventListener('change', evt => {
+        if (evt.target.checked) {
+          fn(evt)
+        }
+      })
+    }
+    if (node.tagName === 'INPUT' && node.type === 'checkbox') {
+      node.addEventListener('change', evt => {
+        const val = getter(vm, exp)
+        if (typeof val === 'boolean') {
+          setter(vm, exp, node.checked)
+        }
+        if (Array.isArray(val)) {
+          if (node.checked) {
+            val.push(node.value)
+          } else {
+            val.splice(val.indexOf(node.value), 1)
+          }
+        }
+      })
+    }
+    if (node.tagName === 'SELECT') {
+      node.addEventListener('change', evt => {
+        const val = getter(vm, exp)
+        if (typeof val === 'string') {
+          setter(vm, exp, node.value)
+        }
+        if (Array.isArray(val)) {
+          val.splice(0, val.length, ...Array.from(node.selectedOptions).map(optionNode => optionNode.value))
+        }
+      })
+    }
   },
 
   // 样式类指令
@@ -78,6 +114,8 @@ const link = (node, vm, exp, dir) => {
   }
 
   if (compositeReg.test(exp)) {
+    // multiple directive property
+    // for instance, :style="background-color: {{bgColor}};border: solid {{borderWidth}}px black;"
     const data = {}
     const compositeValue = exp.replace(compositeReg, (match, p1) => data[p1] = getter(vm, p1))
     parserFn(node, compositeValue, {exp, dir})

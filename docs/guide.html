@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
   <link rel="stylesheet" href="assets/index.css">
-  <script type="text/javascript" src="nvm.e8f55d582b084dee7234.js"></script>
+  <script type="text/javascript" src="nvm.f03b96c1e022638d0b38.js"></script>
   <style>
     .box {
       width: 100px;
@@ -27,7 +27,7 @@
       <li><a href="#数据绑定">数据绑定</a></li>
       <li><a href="#过滤器">过滤器</a></li>
       <li><a href="#条件和循环">条件和循环</a></li>
-      <li><a href="#用户输入">用户输入</a></li>
+      <li><a href="#表单输入">表单输入</a></li>
       <li><a href="#计算属性">计算属性</a></li>
       <li><a href="#绑定事件">绑定事件</a></li>
       <li><a href="#监视数据">监视数据</a></li>
@@ -119,27 +119,115 @@
         })
       </script>
     </div>
-    <h2 id="用户输入">用户输入</h2>
+    <h2 id="表单输入">表单输入</h2>
     <p>n-model 完成表单 和 数据的 双向绑定</p>
     <div class="code-block">
       <pre><code class="language-markup">
-        <div id="app-4">
-          <input type="text" n-model="message">
-          <span>{{message}}</span>
-        </div>
+          <div id="app-4">
+            <div>
+              <span>单行文本框：</span>
+              <input type="text" n-model="message">
+              <span>{{message}}</span>
+            </div>
+            <div>
+              <span>多行文本域：</span>
+              <textarea n-model="mulText"></textarea>
+              <span>{{mulText}}</span>
+            </div>
+            <div>
+              <span>单选按钮：</span>
+              <input type="radio" name="sex" value="male" n-model="sex">男 <input type="radio" name="sex" value="female" n-model="sex">女
+              <span>{{sex}}</span>
+            </div>
+            <div>
+              <span>复选框（单个，绑定 boolean）</span>
+              同意条款：<input type="checkbox" n-model="agree">
+              <span>{{agree}}</span>
+            </div>
+            <div>
+              <span>复选框（多个，绑定到数组）</span>
+              爱好：<input type="checkbox" value="basketball" n-model="hobby">篮球<input type="checkbox" value="football" n-model="hobby">足球<input type="checkbox" value="bowling" n-model="hobby">保龄球
+              <span>{{hobby}}</span>
+            </div>
+            <div>
+              <span>选择框（单个）</span>
+              故乡：<select name="hometown" n-model="hometown"><option value="shandong">山东省</option><option value="beijing">北京市</option><option value="shanxi">陕西省</option></select>
+              <span>{{hometown}}</span>
+            </div>
+            <div>
+              <span>选择框（多个）</span>
+              邮件抄送：
+              <select name="cc" n-model="cc" multiple>
+                <option value="panan">潘安</option>
+                <option value="fengxiaogang">冯小刚</option>
+                <option value="bill">比尔.盖茨</option>
+                <option value="aiyin">爱因斯坦</option>
+                <option value="liuxiu">刘秀</option>
+                <option value="xisi">西施</option>
+              </select>
+              <span>{{cc}}</span>
+            </div>
+          </div>
       </code></pre>
       <pre><code class="language-javascript"></code></pre>
     </div>
     <div class="demo">
       <div id="_app-4">
-        <input type="text" n-model="message">
-        <span>{{message}}</span>
+        <div>
+            <span>单行文本框：</span>
+            <input type="text" n-model="message">
+            <span>{{message}}</span>
+        </div>
+        <div>
+            <span>多行文本域：</span>
+            <textarea n-model="mulText"></textarea>
+            <span>{{mulText}}</span>
+        </div>
+        <div>
+            <span>单选按钮：</span>
+            <input type="radio" name="sex" value="male" n-model="sex">男 <input type="radio" name="sex" value="female" n-model="sex">女
+            <span>{{sex}}</span>
+        </div>
+        <div>
+          <span>复选框（单个，绑定 boolean）</span>
+          同意条款：<input type="checkbox" n-model="agree">
+          <span>{{agree}}</span>
+        </div>
+        <div>
+            <span>复选框（多个，绑定到数组）</span>
+            爱好：<input type="checkbox" value="basketball" n-model="hobby">篮球<input type="checkbox" value="football" n-model="hobby">足球<input type="checkbox" value="bowling" n-model="hobby">保龄球
+            <span>{{hobby}}</span>
+        </div>
+        <div>
+          <span>选择框（单个）</span>
+          故乡：<select name="hometown" n-model="hometown"><option value="shandong">山东省</option><option value="beijing">北京市</option><option value="shanxi">陕西省</option></select>
+          <span>{{hometown}}</span>
+        </div>
+        <div>
+            <span>选择框（多个）</span>
+            邮件抄送：
+            <select name="cc" n-model="cc" multiple>
+              <option value="panan">潘安</option>
+              <option value="fengxiaogang">冯小刚</option>
+              <option value="bill">比尔.盖茨</option>
+              <option value="aiyin">爱因斯坦</option>
+              <option value="liuxiu">刘秀</option>
+              <option value="xisi">西施</option>
+            </select>
+            <span>{{cc}}</span>
+          </div>
       </div>
       <script>
         const app4 = new NVM({
           el: '#_app-4',
           data: {
-            message: 'Hello NVM!'
+            message: 'Hello NVM!',
+            mulText: 'NVM is a mini mvvm framework, \n welcome to use it!',
+            sex: 'male',
+            hobby: ['basketball', 'football', 'bowling'],
+            hometown: 'shanxi',
+            cc: ['panan', 'fengxiaogang', 'liuxiu'],
+            agree: false,
           }
         })
       </script>

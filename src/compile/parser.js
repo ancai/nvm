@@ -41,7 +41,34 @@ const parser = {
   },
 
   model (node, value) {
-    node.value = value
+    if (node.tagName === 'INPUT' && node.type === 'text' || node.tagName === 'TEXTAREA') {
+      node.value = value
+    }
+    if (node.tagName === 'INPUT' && node.type === 'radio') {
+      node.checked = node.value === value
+    }
+    if (node.tagName === 'INPUT' && node.type === 'checkbox') {
+      if (typeof value === 'boolean') {
+        node.checked = value
+      }
+      if (Array.isArray(value)) {
+        node.checked = value.includes(node.value)
+      }
+    }
+    if (node.tagName === 'SELECT') {
+      if (typeof value === 'string') {
+        node.childNodes.forEach(optionNode => {
+          if (optionNode.value === value) {
+            optionNode.selected = true
+          }
+        })
+      }
+      if (Array.isArray(value)) {
+        node.childNodes.forEach(optionNode => {
+          optionNode.selected = value.includes(optionNode.value)
+        })
+      }
+    }
   },
 
   hide (node, value) {
