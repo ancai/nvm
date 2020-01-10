@@ -1,3 +1,5 @@
+import NVM from "."
+
 const regArithmetic = /([+\-*!><]|[&|]{2}|={2,3})+/
 const regVariable = /^[a-zA-Z_][0-9.]*/i
 
@@ -34,7 +36,7 @@ const getVal = (exp) => {
     } else {
       args = `obj.data.${vexp || exp}`
     }
-    code += `val = obj.filters.${flt}(${args});`
+    code += `val = obj.filters.${flt} && obj.filters.${flt}(${args}) || NVM.filters.${flt}(${args});`
   } else if (regArithmetic.test(exp)) { // 包含复合运算
     code += 'val = '
     exp.split(regArithmetic).forEach(item => {

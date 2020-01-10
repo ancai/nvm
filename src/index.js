@@ -20,7 +20,7 @@ class NVM {
     listener.__proto__ = this.parent && this.parent.listener
     this.listener = listener
     // 过滤器
-    this.filters = Object.assign(options.filters || {}, filters)
+    this.filters = NVM.filters = Object.assign(options.filters || {}, filters)
 
     // 数据代理 实现 vm.xxx -> vm._data.xxx
     this.proxyData(data)
