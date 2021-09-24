@@ -18,9 +18,8 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# visit http://dev.f2e.163.com:8080/ in browser
+# visit http://localhost:8080/ in browser
 ```
 ## 示例
-[数据表格](https://ancai.github.io/nvm/index.html)
 
 [用法说明](https://ancai.github.io/nvm/guide.html)
